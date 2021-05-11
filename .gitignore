@@ -1,0 +1,8 @@
+target/
+.classpath
+.idea/
+*.iml
+*.zip
+*.jar
+*.7z
+*.rar
