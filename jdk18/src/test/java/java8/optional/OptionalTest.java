@@ -2,6 +2,8 @@ package java8.optional;
 
 import org.junit.Test;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -37,6 +39,15 @@ public class OptionalTest {
         //Optional.get - 获取值，值需要存在
         Integer value2 = b.get();
         return value1 + value2;
+    }
+
+    @Test
+    public void testCollection(){
+        List<String> list = null;
+//        System.out.println(list.size());// java.lang.NullPointerException
+        // 断言处理空集合
+        list = Optional.ofNullable(list).orElseGet(Collections::emptyList);
+        System.out.println(list.size());
     }
 
 }

@@ -35,7 +35,7 @@ public class DeadLockDemo {
             }
         }, "线程 2").start();
 
-        // 解决死锁
+        // 解决死锁--线程 2 的代码修改成下面
 //        new Thread(() -> {
 //            synchronized (resource1) {
 //                System.out.println(Thread.currentThread() + "get resource1");

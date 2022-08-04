@@ -1,5 +1,7 @@
 package convert;
 
+import constant.OrderStatusEnum;
+import constant.PayTypeEnum;
 import constant.StatusConsts;
 
 import java.util.Optional;
@@ -40,12 +42,12 @@ public class EnumConvert {
     }
 
     private static String getOrderStatusValue(String key) {
-        Optional<StatusConsts.OrderStatusEnum> m1 = StatusConsts.getEnumObject(StatusConsts.OrderStatusEnum.class, e -> e.getKey().equals(key));
+        Optional<OrderStatusEnum> m1 = StatusConsts.getEnumObject(OrderStatusEnum.class, e -> e.getKey().equals(key));
         return m1.isPresent() ? m1.get().getValue() : "";
     }
 
     private static String getPayTypeValue(String key) {
-        Optional<StatusConsts.PayTypeEnum> m1 = StatusConsts.getEnumObject(StatusConsts.PayTypeEnum.class, e -> e.getKey().equals(key));
+        Optional<PayTypeEnum> m1 = StatusConsts.getEnumObject(PayTypeEnum.class, e -> e.getKey().equals(key));
         return m1.isPresent() ? m1.get().getValue() : "";
     }
 

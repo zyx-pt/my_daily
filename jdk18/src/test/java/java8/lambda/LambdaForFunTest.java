@@ -1,5 +1,6 @@
 package java8.lambda;
 
+import entity.Account;
 import entity.Car;
 
 import java.util.Arrays;
@@ -31,7 +32,7 @@ public class LambdaForFunTest {
      */
     public static void main(String[] args) {
 
-        System.out.println("----- 1. Runnable -----");
+        System.out.println("----- Runnable -----");
         // 在1.8之前使用匿名内部类实现
         Runnable runnable = new Runnable() {
             @Override
@@ -43,6 +44,25 @@ public class LambdaForFunTest {
         // 使用Lambda表达式来表示该接口的一个实现
         Runnable runnable1 = () -> System.out.println("Test Runnable use java 1.8.");
         runnable1.run();
+        System.out.println("----- Comparator -----");
+        // 相当于 (x, y) -> Integer.compare(x,y);
+        Comparator<Integer> comparator = Integer::compare;
+        System.out.println(comparator.compare(1,2));
+
+        System.out.println("----- 1. Consumer -----");
+        Consumer<String> consumer = System.out::println;
+        Consumer<String> consumer2 = item -> System.out.println(item);
+        consumer.accept("Test Consumer.");
+        Account account = new Account();
+        useConsumerSetValue(account, item -> item.setAddress("My address is here"));
+        System.out.println(account.getAddress());
+        Car myCar = new Car();
+        useConsumerSetValue(myCar, item -> {
+            System.out.println("set my car price");
+            item.setPrice(100000);
+            }
+        );
+        System.out.println("my car price:"+myCar.getPrice());
 
         System.out.println("----- 2. Supplier -----");
         // 构造器引用：它的语法是Class::new，或者更一般的Class< T >::new
@@ -60,16 +80,7 @@ public class LambdaForFunTest {
         final Car police = Car.create(Car::new);
         cars.forEach(police::follow);
 
-        System.out.println("----- 3. Consumer -----");
-        Consumer<String> consumer = System.out::println;
-        consumer.accept("Test Consumer.");
-
-        System.out.println("----- 4. Comparator -----");
-        // 相当于 (x, y) -> Integer.compare(x,y);
-        Comparator<Integer> comparator = Integer::compare;
-        System.out.println(comparator.compare(1,2));
-
-        System.out.println("----- 5. Function -----");
+        System.out.println("----- 3. Function -----");
         System.out.println(concatName("zyx", x->x+" hehe"));
 
         Function<String, String> function = (x) -> x +" and hehe";
@@ -80,7 +91,7 @@ public class LambdaForFunTest {
         Car car2 = function1.apply("zyx");
         System.out.println(car2.getName());
 
-        System.out.println("----- 6. Predicate -----");
+        System.out.println("----- 4. Predicate -----");
         Predicate<Integer> predicate = x -> x>10;
         boolean test = predicate.test(5);
         System.out.println("5>10:"+test);
@@ -104,6 +115,10 @@ public class LambdaForFunTest {
         System.out.println("输出大于 3 的所有数字:");
         eval(list, n -> n > 3 );
         System.out.println();
+    }
+
+    public static <T> void useConsumerSetValue(T item, Consumer<T> consumer){
+        consumer.accept(item);
     }
 
     public static String concatName(String name1, Function<String, String> fun){

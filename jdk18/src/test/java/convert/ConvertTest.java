@@ -1,7 +1,7 @@
 package convert;
 
 import com.google.common.base.Preconditions;
-import constant.StatusConsts;
+import constant.OrderStatusEnum;
 import org.junit.Test;
 
 /**
@@ -31,8 +31,8 @@ public class ConvertTest {
     @Test
     public void testEnumConvert(){
         String orderStatus = EnumConvert.convertKeyToValue("ORDER_STATUS", "0");
-        String orderStatus2 = StatusConsts.OrderStatusEnum.getByKey("0");
-        String orderStatusName = StatusConsts.OrderStatusEnum.getByValue("已支付");
+        String orderStatus2 = OrderStatusEnum.getByKey("0");
+        String orderStatusName = OrderStatusEnum.getByValue("已支付");
         System.out.println(orderStatus);
         System.out.println(orderStatus2);
         System.out.println(orderStatusName);

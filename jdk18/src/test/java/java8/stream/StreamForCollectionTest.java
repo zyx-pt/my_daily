@@ -4,6 +4,7 @@ import entity.Account;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
@@ -21,14 +22,14 @@ public class StreamForCollectionTest {
     public void test() {
         /** 查询集合中符合条件的总条数 */
         List<Account> accountList = new ArrayList<>();
-        accountList.add(new Account("qwe", 19, "beijing"));
-        accountList.add(new Account(null, 11, "beijing"));
-        accountList.add(new Account("asd", 15, "shanghai"));
-        accountList.add(new Account("zxc", 18, null));
-        accountList.add(new Account("hehe", 21, "hangzhou"));
-        accountList.add(new Account("zyx", 25, "puitan1"));
-        accountList.add(new Account("zyx", 24, "putian2"));
-        accountList.add(new Account("zyx", 24, null));
+        accountList.add(new Account("qwe", 19, "beijing", new BigDecimal("10.1")));
+        accountList.add(new Account(null, 11, "beijing", new BigDecimal("10.1")));
+        accountList.add(new Account("asd", 15, "shanghai", new BigDecimal("10.1")));
+        accountList.add(new Account("zxc", 18, null, new BigDecimal("10.1")));
+        accountList.add(new Account("hehe", 21, "hangzhou", new BigDecimal("10.1")));
+        accountList.add(new Account("zyx", 25, "puitan1", new BigDecimal("10.1")));
+        accountList.add(new Account("zyx", 24, "putian2", new BigDecimal("10.1")));
+        accountList.add(new Account("zyx", 24, null, null));
 
 
         /** 获取集合中某个属性不重复的集合 */
@@ -51,13 +52,22 @@ public class StreamForCollectionTest {
                 .sorted(Comparator.comparing(Account::getAge).reversed()).collect(Collectors.toList());
         System.out.println();
         accountSorted2.forEach(item -> System.out.println(item.getName()+"---"+item.getAge()));
-
-        // 按名称null排后   nullsFirst->null排前
+        // 针对数字存成String，需要进行排序
+        //                 .sorted(Comparator.comparing(e -> (StringUtils.isEmpty(e.getName()) ? null : Integer.valueOf(e.getName())), Comparator.nullsLast(Comparator.naturalOrder())))
+        // 排序处理null   nullsFirst->null排前 nullsLast->null排后
         List<Account> accountSorted3 = accountList.stream()
                 .sorted(Comparator.comparing(Account::getName, Comparator.nullsLast(Comparator.naturalOrder())))
                 .collect(Collectors.toList());
         System.out.println();
         accountSorted3.forEach(item -> System.out.println(item.getName()+"---"+item.getAge()));
+        /**统计数据*/
+        Integer totalAge = accountList.stream().mapToInt(Account::getAge).sum();
+        Long weightAge = accountList.stream().filter(item -> !Objects.isNull(item.getWeight())).mapToLong(Account::getWeight).sum();
+        BigDecimal total = accountList.stream()
+                .filter(item -> !Objects.isNull(item.getWallet()))
+                .map(Account::getWallet).reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println("all account wallet:" + total);
+
 
         /**
          * groupingBy 统计的使用
@@ -97,6 +107,12 @@ public class StreamForCollectionTest {
                 .collect(Collectors.groupingBy(Account::getName, Collectors.mapping(Account::getAddress, Collectors.joining(","))));
         System.out.println("name -> join address："+nameToJoinAddressMap);
 
+        List<List<Account>> repeatList = accountList.stream().
+                collect(Collectors.groupingBy(item -> item.getName()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue().size() > 1)
+                .map(entry -> entry.getValue())
+                .collect(Collectors.toList());
         /**
          * toMap的使用
          * 把集合存储到Map中，key为某个属性，value为另一个属性或实体类
@@ -139,6 +155,8 @@ public class StreamForCollectionTest {
         Map<String, Account> nameToAccountMap3 = accountList.stream()
                 .collect(Collectors.toMap(Account::getName, Function.identity(), (v1, v2) -> v2));
         System.out.println("name -> account："+nameToAccountMap3);
+        // Map --> List<entity>
+        List<Account> accounts = nameToAccountMap3.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
 
         /** String-List-Map互转 */
         String str1 = "a,b,c";
@@ -221,9 +239,8 @@ public class StreamForCollectionTest {
     private static <T> Predicate<T> distinctByName(Function<? super T, ?> keyExtractor) {
         Map<Object, Boolean> seen = new ConcurrentHashMap<>();
         return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
-
-        // putIfAbsent
-        // key不存在或者key已存在但是值为null --> put进去，返回结果null
-        // 如果结果等于null，说明该对象的不重复,返回true --> filter恰好会留下表达式为true的数据
     }
+    // putIfAbsent
+    // key不存在或者key已存在但是值为null --> put进去，返回结果null
+    // 如果结果等于null，说明该对象的不重复,返回true --> filter恰好会留下表达式为true的数据
 }

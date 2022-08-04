@@ -1,21 +1,10 @@
-import com.google.common.base.CaseFormat;
 import com.google.common.collect.Lists;
 import entity.Account;
-import net.sf.json.JSONObject;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-import org.springframework.core.annotation.OrderUtils;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -97,6 +86,9 @@ public class TemplateTest {
         List<String> list = Lists.newArrayList();
         setList(list);
         list.forEach(x -> System.out.println(x));
+        String yr0537 = "123;4,5，6";
+        String[] splitYr0537 = org.apache.commons.lang.StringUtils.split(yr0537, ",，;；、");
+        String yr05374 = "123;4,5，6";
 
 
     }

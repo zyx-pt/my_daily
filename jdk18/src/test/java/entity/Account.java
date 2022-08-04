@@ -1,12 +1,18 @@
 package entity;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+import java.math.BigDecimal;
+
+@Data
+@AllArgsConstructor
 public class Account {
     private String name;
     private int age;
     private String address;
-    private Date birthDay;
+    private BigDecimal wallet;
+    private Long weight;
 
     public Account() {
     }
@@ -22,35 +28,10 @@ public class Account {
         this.address = address;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Account(String name, int age, String address, BigDecimal wallet) {
         this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Date getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
+        this.wallet = wallet;
     }
 }

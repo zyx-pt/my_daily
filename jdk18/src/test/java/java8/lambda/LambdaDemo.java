@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * @Date: 2020/8/17 22:05
  */
 public class LambdaDemo {
+
    public static void main(String args[]){
       LambdaDemo tester = new LambdaDemo();
         
@@ -31,12 +32,10 @@ public class LambdaDemo {
       System.out.println("10 / 5 = " + tester.operate(10, 5, division));
         
       // 不用括号
-      GreetingService greetService1 = message ->
-      System.out.println("Hello " + message);
+      GreetingService greetService1 = message -> System.out.println("Hello " + message);
         
       // 用括号
-      GreetingService greetService2 = (message) ->
-      System.out.println("Hello " + message);
+      GreetingService greetService2 = (message) -> {System.out.println("Hello " + message);};
 
 
       // 引用外部变量
