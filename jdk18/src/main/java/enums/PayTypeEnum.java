@@ -1,8 +1,8 @@
-package constant;
+package enums;
 
 /**
  * @Description:
- * @ClassName constant.PayTypeEnum
+ * @ClassName enums.PayTypeEnum
  * @Author zhengyongxian
  * @Date 2021/7/1 20:55
  */

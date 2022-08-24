@@ -1,9 +1,6 @@
-package utiltest;
+package collector;
 
 import entity.Student;
-import entity.Student;
-import org.junit.Test;
-import util.collector.CollectorsUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -21,10 +18,9 @@ import java.util.stream.Collectors;
  * @Description: TODO
  */
 
-public class CollectorsUtilTest {
+public class CollectorsUtilDemo {
 
-    @Test
-    public void test(){
+    public static void main(String[] args) {
         List<Student> list = new ArrayList<>();
         list.add(new Student("男",18,new BigDecimal("100")));
         list.add(new Student("男",19,new BigDecimal("90.11")));

@@ -1,4 +1,4 @@
-package spring.mailsend;
+package enums;
 
 /**
  * @Author zhengyongxian

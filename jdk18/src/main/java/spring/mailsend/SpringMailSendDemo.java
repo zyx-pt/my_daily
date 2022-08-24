@@ -1,8 +1,4 @@
-package utiltest;
-
-import spring.mailsend.MailSendParameters;
-import spring.mailsend.MailSendUtil;
-import org.junit.Test;
+package spring.mailsend;
 
 import javax.mail.MessagingException;
 import java.util.ArrayList;
@@ -14,13 +10,44 @@ import java.util.Map;
  * @Author zhengyongxian
  * @Date 2020/5/15
  */
-public class SpringMailSendTest {
+public class SpringMailSendDemo {
+
+    public static void main(String[] args) {
+//        mailTest();
+//        testDefaultSendMail();
+//        testSpecifySendMail();
+        testSendMailByTemplate();
+    }
+
+    public static void mailTest() {
+        List<String> receivers = new ArrayList<>(3);
+        Map<String, String> templateText = new HashMap<>(16);
+        receivers.add("zyx_pt@163.com");
+
+        templateText.put("subject","zyx&hehe");
+        templateText.put("time","2019-6-25");
+        templateText.put("address","add");
+        templateText.put("sponsor","xxx");
+        templateText.put("description","xxxxxxxxxx");
+
+        MailSendParameters mailSendParameters = MailSendParameters.builder()
+                .receivers(receivers)
+                .subject("zyx-测试发送邮件")
+                .templateName("mail.ftl")
+                .templateParam(templateText)
+                .build();
+        try {
+            MailSend.specifySendMail(mailSendParameters);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * 自定义邮件内容发送
      */
-    @Test
-    public void testDefaultSendMail(){
+    public static void testDefaultSendMail(){
         List<String> receivers = new ArrayList<>(3);
         List<String> filePaths = new ArrayList<>(3);
         receivers.add("1367245342@qq.com");
@@ -36,7 +63,7 @@ public class SpringMailSendTest {
                 .staticResources(staticResources)
                 .build();
         try {
-            MailSendUtil.defaultSendMail(mailSendParameters);
+            MailSend.defaultSendMail(mailSendParameters);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -45,8 +72,7 @@ public class SpringMailSendTest {
     /**
      * 自定义邮件内容发送
      */
-    @Test
-    public void testSpecifySendMail(){
+    public static void testSpecifySendMail(){
         List<String> receivers = new ArrayList<>(3);
         List<String> filePaths = new ArrayList<>(3);
         receivers.add("xxx@163.com");
@@ -62,7 +88,7 @@ public class SpringMailSendTest {
                 .staticResources(staticResources)
                 .build();
         try {
-            MailSendUtil.specifySendMail(mailSendParameters);
+            MailSend.specifySendMail(mailSendParameters);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
@@ -71,8 +97,7 @@ public class SpringMailSendTest {
     /**
      * 根据邮件模板发送
      */
-    @Test
-    public void testSendMailByTemplate(){
+    public static void testSendMailByTemplate(){
         List<String> receivers = new ArrayList<>(3);
         Map<String, String> templateParam = new HashMap<>(16);
         receivers.add("zyx_pt@163.com");
@@ -88,11 +113,11 @@ public class SpringMailSendTest {
                 .templateName("mail.ftl")
                 .templateParam(templateParam)
                 .build();
-        String text = MailSendUtil.getTemplateText(mailSendParameters);
+        String text = MailSend.getTemplateText(mailSendParameters);
         mailSendParameters.setText(text);
 
         try {
-            MailSendUtil.specifySendMail(mailSendParameters);
+            MailSend.specifySendMail(mailSendParameters);
         } catch (MessagingException e) {
             e.printStackTrace();
         }

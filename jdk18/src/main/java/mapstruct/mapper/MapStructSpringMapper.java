@@ -7,12 +7,7 @@ import entity.Sku;
 import entity.dto.PersonDTO;
 import entity.dto.SkuDTO;
 import entity.vo.OrderQueryParamVO;
-import org.mapstruct.InheritConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.*;
 
 import java.util.List;
 

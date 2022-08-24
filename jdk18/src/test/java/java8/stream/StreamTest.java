@@ -30,6 +30,9 @@ public class StreamTest {
         // limit限制个数，skip跳过前几个
         List<Double> collect1 = Stream.generate(Math::random).limit(100).skip(99).collect(Collectors.toList());
         collect1.forEach(System.out::println);
-
+        System.out.println("---------------");
+        // limit限制个数，skip跳过前几个
+        List<Double> collect2 = Stream.generate(Math::random).limit(10).skip(1).collect(Collectors.toList());
+        collect2.forEach(System.out::println);
     }
 }

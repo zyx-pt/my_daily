@@ -1,8 +1,8 @@
-package constant;
+package enums;
 
 /**
  * @Description:
- * @ClassName constant.OrderStatusEnum
+ * @ClassName enums.OrderStatusEnum
  * @Author zhengyongxian
  * @Date 2021/7/1 20:55
  */

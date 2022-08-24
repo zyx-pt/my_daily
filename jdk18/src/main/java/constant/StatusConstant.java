@@ -15,7 +15,7 @@ import java.util.function.Predicate;
  * @Date 2020/10/10 16:15
  */
 
-public class StatusConsts {
+public class StatusConstant {
 
     private static Map<Class, Object> enumMap = new ConcurrentHashMap<>();
 

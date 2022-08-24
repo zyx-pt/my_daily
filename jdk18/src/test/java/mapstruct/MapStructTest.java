@@ -1,6 +1,5 @@
 package mapstruct;
 
-import convert.User;
 import entity.Account;
 import entity.Item;
 import entity.Order;

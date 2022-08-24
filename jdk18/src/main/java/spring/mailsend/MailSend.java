@@ -1,6 +1,7 @@
 package spring.mailsend;
 
 import constant.PropertiesConstant;
+import enums.MailSendEnum;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.apache.commons.collections4.CollectionUtils;
@@ -25,7 +26,7 @@ import java.util.Properties;
  * @Author zhengyongxian
  * @Date 2020/5/14
  */
-public class MailSendUtil {
+public class MailSend {
 
     private static final JavaMailSender defaultMailSender = createDefaultMailSent();
     private static final JavaMailSender specifyMailSender = createSpecifyMailSent();

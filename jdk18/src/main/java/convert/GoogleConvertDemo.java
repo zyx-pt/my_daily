@@ -1,18 +1,20 @@
 package convert;
 
 import com.google.common.base.Preconditions;
-import constant.OrderStatusEnum;
-import org.junit.Test;
+import enums.OrderStatusEnum;
 
 /**
  * 对传输对象的处理：对象拷贝
  * @Author zhengyongxian
  * @Date 2020/5/11
  */
-public class ConvertTest {
+public class GoogleConvertDemo {
+    public static void main(String[] args) {
+        test1();
+        testEnumConvert();
+    }
 
-    @Test
-    public void test1(){
+    public static void test1(){
         // 只要是用于网络传输的对象，我们都认为他们可以当做是DTO对象
         // 对接的返回值以及入参也叫DTO对象
         // 对接前端发送的参数
@@ -25,11 +27,10 @@ public class ConvertTest {
         User user2 = User.builder().userName("hehe").age(18).build();
         UserDTO result = userDTO.convertFor(user2);
         System.out.println(result);
-        Preconditions.checkNotNull(null);
+        Preconditions.checkNotNull(result);
     }
 
-    @Test
-    public void testEnumConvert(){
+    public static void testEnumConvert(){
         String orderStatus = EnumConvert.convertKeyToValue("ORDER_STATUS", "0");
         String orderStatus2 = OrderStatusEnum.getByKey("0");
         String orderStatusName = OrderStatusEnum.getByValue("已支付");

@@ -1,4 +1,4 @@
-package util.collector;
+package collector;
 
 import java.math.BigDecimal;
 import java.util.Collections;
