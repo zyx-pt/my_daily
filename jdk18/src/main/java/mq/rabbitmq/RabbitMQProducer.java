@@ -10,7 +10,7 @@ import lombok.SneakyThrows;
  * @Date 2022/8/12 17:36
  */
 public class RabbitMQProducer {
-    public static final String QUEUE_NAME = "hello";
+
 
     @SneakyThrows
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class RabbitMQProducer {
          * 4.是否自动删除，最后一个消费者端开连接以后，该队列是否自动删除，true表示自动删除
          * 5.其他参数
          */
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(RabbitMQUtils.QUEUE_NAME_HELLO, false, false, false, null);
         String message = "Hello, World";
         /**
          *发送一个消息
@@ -31,7 +31,7 @@ public class RabbitMQProducer {
          * 3.其他参数信息
          * 4.发送消息的消息体
          */
-        channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+        channel.basicPublish("", RabbitMQUtils.QUEUE_NAME_HELLO, null, message.getBytes());
         System.out.println("消息推送完毕！");
 
     }

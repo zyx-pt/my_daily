@@ -1,34 +1,30 @@
 package mq.rabbitmq;
 
-import com.rabbitmq.client.*;
+import com.rabbitmq.client.CancelCallback;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
 import lombok.SneakyThrows;
 
 /**
- * @Description: RabbitMQ消费者
+ * @Description: 支持启动多个线程进行消费，测试【轮询消费】
  * @ClassName mq.rabbitmq.RabbitMQConsumer
  * @Author zhengyongxian
  * @Date 2022/8/12 17:47
  */
-public class RabbitMQConsumer {
+public class Work01 {
 
     @SneakyThrows
     public static void main(String[] args) {
         Channel channel = RabbitMQUtils.getChannel();
         // 声明接收消息
         DeliverCallback deliverCallback = (comsumerTag, message) ->{
-            System.out.println("消费者获取到："+new String(message.getBody()));
+            System.out.println("接收到消息："+new String(message.getBody()));
         };
         // 取消消息时的回调
         CancelCallback cancelCallback = consumerTag -> {
-            System.out.println("消息消费被中断");
+            System.out.println("消息消费被取消");
         };
-        /**
-         *消费者消费消息
-         * 1.消费哪个队列
-         * 2.消费成功后是否自动应答
-         * 3.消费者未能成功消费的回调
-         * 4.消费者取消消费的回调
-         */
+        System.out.println("消费者C2等待接受消息");
         channel.basicConsume(RabbitMQUtils.QUEUE_NAME_HELLO, true, deliverCallback, cancelCallback);
     }
 

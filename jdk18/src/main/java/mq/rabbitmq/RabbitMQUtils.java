@@ -15,6 +15,7 @@ import java.util.concurrent.TimeoutException;
  * @Date 2022/8/24 11:39
  */
 public class RabbitMQUtils {
+    public static final String QUEUE_NAME_HELLO = "hello";
 
     public static Channel getChannel() throws IOException, TimeoutException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
