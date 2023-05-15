@@ -13,7 +13,7 @@ import java.util.stream.Stream;
  * 描述：ArrayList源码分析
  * </pre>
  *
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/10/12 11:16
  * @Description: TODO
  */

@@ -27,7 +27,7 @@ public interface MapStructSpringMapper {
     /**
      * @Description: 订单实体转换成查询参数的VO
      *
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date: 2020/9/11 8:53
      * @param order
      * @return: entity.vo.OrderQueryParamVO
@@ -38,7 +38,7 @@ public interface MapStructSpringMapper {
     /**
      * @Description: 属性名不同的映射
      *
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date: 2020/9/14 17:20
      * @param person
      * @return: entity.dto.PersonDTO

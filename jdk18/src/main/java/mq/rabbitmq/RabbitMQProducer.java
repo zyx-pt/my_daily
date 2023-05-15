@@ -6,7 +6,7 @@ import lombok.SneakyThrows;
 /**
  * @Description: RabbitMQ生成者
  * @ClassName mq.rabbitmq.Producer
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2022/8/12 17:36
  */
 public class RabbitMQProducer {

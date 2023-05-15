@@ -12,7 +12,7 @@ import java.util.concurrent.*;
  * ~提高响应速度。当任务到达时，任务可以不需要等到线程创建就能立即执行。
  * ~提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。
  * @ClassName threadpool.ThreadPoolDemo
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2022/9/15 15:27
  */
 public class ThreadPoolDemo {
@@ -73,14 +73,13 @@ public class ThreadPoolDemo {
                 countDownLatch.countDown();
             });
         }
-
-        executorService.shutdown();
         // 3. 阻塞等待所有任务执行完成
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        executorService.shutdown();
     }
 
 }

@@ -5,7 +5,7 @@ import util.PropUtils;
 
 /**
  * 配置类中对应的常量
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/5/14
  */
 public class PropertiesConstant {

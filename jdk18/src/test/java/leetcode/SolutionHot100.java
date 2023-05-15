@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * @Description:
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/7/19 19:58
  */
 public class SolutionHot100 {
@@ -27,7 +27,7 @@ public class SolutionHot100 {
     /**
      * @Description: 给定一个整数数组 nums 和一个目标值 target，在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
      * nums: [2, 7, 11, 15]; target: 9
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date 2022/4/1 11:29
      * @param nums
      * @param target
@@ -47,7 +47,7 @@ public class SolutionHot100 {
 
     /**
      * @Description:
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date 2022/4/1 11:29
      * @param l1
      * @param l2

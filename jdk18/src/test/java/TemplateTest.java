@@ -1,5 +1,6 @@
 import com.google.common.collect.Lists;
 import entity.Account;
+import entity.Temp;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -9,10 +10,14 @@ import java.util.stream.Collectors;
 
 /**
  * @Description: 临时测验
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/6/22 22:11
  */
 public class TemplateTest {
+    @Test
+    public void temp(){
+        new Temp();
+    }
     
     /**
      * @Description: 测试List Map的为空的循环问题

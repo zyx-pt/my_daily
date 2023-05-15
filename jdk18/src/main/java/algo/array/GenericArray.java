@@ -1,7 +1,7 @@
 package algo.array;
 
 /**
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/4/27
  */
 public class GenericArray<T> {

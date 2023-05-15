@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * @Description: 通过控制台输入多次发送消息
  * @ClassName mq.rabbitmq.Task01
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2022/8/24 18:17
  */
 public class Task01 {

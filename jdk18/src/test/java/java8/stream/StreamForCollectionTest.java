@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 /**
  * @Description: stream在集合中的应用
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/8/28 15:01
  */
 public class StreamForCollectionTest {
@@ -204,7 +204,7 @@ public class StreamForCollectionTest {
     /**
      * @Description: 统计数量
      *
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date: 2020/9/3 17:51
      * @param list
      * @return: java.util.Map<java.lang.Long,java.lang.Long>
@@ -231,7 +231,7 @@ public class StreamForCollectionTest {
     /**
      * @Description: 根据某一属性去重
      *
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date: 2020/9/14 14:07
      * @param keyExtractor
      * @return: java.util.function.Predicate<T>

@@ -5,7 +5,7 @@ import enums.OrderStatusEnum;
 
 /**
  * 对传输对象的处理：对象拷贝
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/5/11
  */
 public class GoogleConvertDemo {

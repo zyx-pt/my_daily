@@ -1,7 +1,7 @@
 package enums;
 
 /**
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/5/18
  */
 public enum MailSendEnum {

@@ -9,7 +9,7 @@ import org.junit.Test;
  *
  * 我们只需在方法名前面加个 default 关键字即可实现默认方法。
  *
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/8/19 9:15
  */
 public class DefaultMethodTest {

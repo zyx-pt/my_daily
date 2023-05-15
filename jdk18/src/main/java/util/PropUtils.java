@@ -10,7 +10,7 @@ import java.util.Properties;
 
 /**
  * 读取配置类的工具类
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/5/14
  */
 public class PropUtils {

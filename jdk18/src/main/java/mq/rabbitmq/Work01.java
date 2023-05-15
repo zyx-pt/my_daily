@@ -8,7 +8,7 @@ import lombok.SneakyThrows;
 /**
  * @Description: 支持启动多个线程进行消费，测试【轮询消费】
  * @ClassName mq.rabbitmq.RabbitMQConsumer
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2022/8/12 17:47
  */
 public class Work01 {

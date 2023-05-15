@@ -12,7 +12,7 @@ import java.util.concurrent.*;
  * @Description: Executor框架示例
  *
  * @ClassName threadpool.ExecutorDemo
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2022/9/16 17:25
  */
 public class ExecutorDemo {

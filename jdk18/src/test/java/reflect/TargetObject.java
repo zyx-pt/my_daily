@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 创建一个我们要使用反射操作的类
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/5/7
  */
 @MyClassAnno(name = "class", value = "TargetObject")

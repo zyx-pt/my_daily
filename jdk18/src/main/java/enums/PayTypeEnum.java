@@ -3,7 +3,7 @@ package enums;
 /**
  * @Description:
  * @ClassName enums.PayTypeEnum
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2021/7/1 20:55
  */
 public enum PayTypeEnum {

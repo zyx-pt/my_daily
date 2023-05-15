@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 /**
  * @Description:
  *
- * @Author: zhengyongxian
+ * @Author: yxzheng
  * @Date: 2020/8/17 22:19
  */
 public class Car {
@@ -23,7 +23,7 @@ public class Car {
     /**
      * @Description: Supplier是jdk1.8的接口，这里和lamda一起使用
      *
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date: 2020/8/17 22:26
      */
     public static Car create(final Supplier<Car> supplier) {

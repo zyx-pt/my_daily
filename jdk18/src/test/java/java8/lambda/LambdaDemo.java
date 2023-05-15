@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @Description: lambda简单demo
  *
- * @Author: zhengyongxian
+ * @Author: yxzheng
  * @Date: 2020/8/17 22:05
  */
 public class LambdaDemo {

@@ -23,7 +23,7 @@ import java.util.Properties;
 
 
 /**
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/5/14
  */
 public class MailSend {

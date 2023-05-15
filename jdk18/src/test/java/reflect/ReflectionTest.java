@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * 演示反射的操作
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/5/7
  */
 public class ReflectionTest {
@@ -140,7 +140,7 @@ public class ReflectionTest {
     /**
      * @Description: 注解的获取
      *
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date: 2020/9/21 16:03
      * @param
      * @return: void
@@ -216,7 +216,7 @@ public class ReflectionTest {
     /**
      * @Description: 泛型的获取
      *
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date: 2020/9/21 16:03
      * @param
      * @return: void

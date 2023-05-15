@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * @Description: 行为参数化--允许你定义一个代码块来表示一个行为，然后传递它
  *
  * @ClassName java8.lambda.BehaviorParam
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2022/7/21 17:05
  */
 public class BehaviorParamTest {
@@ -62,7 +62,7 @@ public class BehaviorParamTest {
 
    /**
     * @Description: 常规方法，定义一个筛选绿色苹果的方法
-    * @Author: zhengyongxian
+    * @Author: yxzheng
     * @Date 2022/7/22 9:47
     * @param inventory
     * @return java.util.List<entity.Apple>
@@ -79,7 +79,7 @@ public class BehaviorParamTest {
 
     /**
      * @Description: 常规方法，定义一个筛选重量超过150g苹果的方法
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date 2022/7/22 9:47
      * @param inventory
      * @return java.util.List<entity.Apple>
@@ -96,7 +96,7 @@ public class BehaviorParamTest {
 
     /**
      * @Description: 行为参数化过滤苹果
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date 2022/7/22 9:46
      * @param inventory
      * @param p
@@ -114,7 +114,7 @@ public class BehaviorParamTest {
 
     /***
      * @Description: 通用过滤集合的方法
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date 2022/7/21 18:00
      * @param list
      * @param p
@@ -132,7 +132,7 @@ public class BehaviorParamTest {
 
     /***
      * @Description: 通用过滤集合--精简
-     * @Author: zhengyongxian
+     * @Author: yxzheng
      * @Date 2022/7/21 18:00
      * @param list
      * @param p

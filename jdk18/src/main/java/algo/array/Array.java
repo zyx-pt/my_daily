@@ -3,7 +3,7 @@ package algo.array;
 /**
  * 数组的插入、删除、按下标随机访问操作；
  * 数组中的数据类型为int
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/4/26
  */
 public class Array {

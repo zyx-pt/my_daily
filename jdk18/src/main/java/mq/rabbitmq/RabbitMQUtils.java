@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * @Description: RabbitMQ工具类
  * @ClassName mq.rabbitmq.RabbitMQUtils
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2022/8/24 11:39
  */
 public class RabbitMQUtils {

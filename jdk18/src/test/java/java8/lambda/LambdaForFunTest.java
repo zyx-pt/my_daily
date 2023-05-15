@@ -16,7 +16,7 @@ import java.util.function.*;
  * 函数式接口(Functional Interface)
  *      是一个有且仅有一个抽象方法，但是可以有多个非抽象方法的接口，可以被隐式转换为 lambda 表达式。
  *
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/8/17 22:25
  */
 public class LambdaForFunTest {

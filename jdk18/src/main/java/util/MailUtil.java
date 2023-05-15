@@ -12,7 +12,7 @@ import java.util.Properties;
 
 /**
  * 使用类加载器获取配置文件
- * @Author zhengyongxian
+ * @Author yxzheng
  * @Date 2020/5/14
  */
 public class MailUtil {
