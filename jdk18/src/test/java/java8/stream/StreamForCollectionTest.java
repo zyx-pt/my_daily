@@ -87,6 +87,12 @@ public class StreamForCollectionTest {
 //                .collect(Collectors.groupingBy(Account::getName, Collectors.toList()));
                     .collect(Collectors.groupingBy(Account::getName));
         System.out.println("name -> accountList："+nameToListMap);
+        /** 把集合存储到Map中，key为某个属性，value为某一属性集合 */
+        Map<String, List<String>> nameToAddressListMap = accountList.stream()
+                .filter(item -> StringUtils.isNotEmpty(item.getName()))
+                .collect(Collectors.groupingBy(Account::getName, Collectors.mapping(Account::getAddress, Collectors.toList())));
+
+        System.out.println("name -> addressList："+nameToAddressListMap);
         /** 统计后按key进行排序 */
         // TreeMap默认为按照key升序
         TreeMap<String, List<Account>> orderByNameToListMap = accountList.stream()

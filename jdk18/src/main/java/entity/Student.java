@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Data
 public class Student {
+    private Long id;
     private String sex;
     private Integer age;
     private BigDecimal score;

@@ -22,11 +22,11 @@ public class CollectorsUtilDemo {
 
     public static void main(String[] args) {
         List<Student> list = new ArrayList<>();
-        list.add(new Student("男",18,new BigDecimal("100")));
-        list.add(new Student("男",19,new BigDecimal("90.11")));
-        list.add(new Student("女",20,new BigDecimal("80.123")));
-        list.add(new Student("女",20,new BigDecimal(70)));
-        list.add(new Student("女",20,null));
+        list.add(new Student(1L,"男",18,new BigDecimal("100")));
+        list.add(new Student(2L,"男",19,new BigDecimal("90.11")));
+        list.add(new Student(3L,"女",20,new BigDecimal("80.123")));
+        list.add(new Student(4L,"女",20,new BigDecimal(70)));
+        list.add(new Student(5L,"女",20,null));
 
         //单条件筛选
         //按照性别分组求分数总和
