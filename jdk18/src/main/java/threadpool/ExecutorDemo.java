@@ -40,7 +40,7 @@ public class ExecutorDemo {
                 .setDaemon(true).build();
         ThreadFactory threadFactory = Executors.defaultThreadFactory();
 
-        ThreadPoolExecutor executorPool = new ThreadPoolExecutor(2, 4, 10, TimeUnit.SECONDS,
+        ThreadPoolExecutor executorPool = new ThreadPoolExecutor(3, 4, 10, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<Runnable>(2), nameThreadFactory, rejectionHandler);
 
         MyMonitorThread monitor = new MyMonitorThread(executorPool, 3);

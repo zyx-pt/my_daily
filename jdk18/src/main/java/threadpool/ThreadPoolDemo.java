@@ -1,5 +1,8 @@
 package threadpool;
 
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.concurrent.*;
  * @Date 2022/9/15 15:27
  */
 public class ThreadPoolDemo {
+    private static final Logger log = LoggerFactory.getLogger(ThreadPoolDemo.class);
 
     public static void main(String[] args) {
         commonTreadPool();System.out.println();
@@ -66,18 +70,20 @@ public class ThreadPoolDemo {
                 // 睡眠一秒，模仿处理过程
                 try {
                     Thread.sleep(1000L);
+                    System.out.println("结果" + key);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                } finally {
+                    // 无论上面程序是否异常必须执行countDown,否则await无法释放
+                    countDownLatch.countDown();
                 }
-                System.out.println("结果" + key);
-                countDownLatch.countDown();
             });
         }
         // 3. 阻塞等待所有任务执行完成
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error("阻塞异常:"+e.getMessage());
         }
         executorService.shutdown();
     }
