@@ -24,11 +24,13 @@ public class CollectionsTest {
     private static void testSort(ArrayList<Integer> arrayList){
         System.out.println("原始数组:");
         System.out.println(arrayList);
+
         // void reverse(List list)：反转
         Collections.reverse(arrayList);
         System.out.println("Collections.reverse(arrayList):");
         System.out.println(arrayList);
 
+        // 旋转列表给定距离|末尾的distance个元素放到最前
         Collections.rotate(arrayList, 4);
         System.out.println("Collections.rotate(arrayList, 4):");
         System.out.println(arrayList);

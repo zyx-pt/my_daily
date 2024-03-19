@@ -4,7 +4,6 @@ import entity.Temp;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
-import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -17,6 +16,28 @@ public class TemplateTest {
     @Test
     public void temp(){
         new Temp();
+        decryptPassword();
+    }
+
+    /**
+     * plsql解密
+     */
+    public static void decryptPassword(){
+        String cryptText = "219741515025397947574943405750115053";
+        String plainText = "";
+        ArrayList<Integer> values = new ArrayList<Integer>();
+        for (int i = 0; i < cryptText.length(); i+= 4){
+            values.add(Integer.parseInt((cryptText.substring(i, i + 4))));
+        }
+        int key = values.get(0);
+        values.remove(0);
+        for (int i = 0; i < values.size(); i++) {
+            int val = values.get(i) - 1000;
+            int mask = key + (10 * (i + 1));
+            int res = (val ^ mask) >> 4;
+            plainText += Character.toString((char)(res));
+        }
+        System.out.println("plainText:"+plainText);
     }
     
     /**
@@ -45,7 +66,6 @@ public class TemplateTest {
         objects.forEach(x -> {
             System.out.println("cccc");
         });
-
     }
     
     @Test
@@ -61,9 +81,9 @@ public class TemplateTest {
         list1.add(null);
         // collect1.size() = 2 collect1.get(0):"xx"  collect1.get(1):null
         List<String> collect1 = list1.stream().collect(Collectors.toList());
-        // collect1.size() = 1 collect1.get(0):null
+        // collect2.size() = 1 collect2.get(0):null
         List<String> collect2 = list1.stream().filter(item -> StringUtils.isEmpty(item)).collect(Collectors.toList());
-        // collect1.size() = 1 collect1.get(0):"xx"
+        // collect3.size() = 1 collect3.get(0):"xx"
         List<String> collect3 = list1.stream().filter(StringUtils::isNotEmpty).collect(Collectors.toList());
 
         List<Account> accountList = Lists.newArrayList();
@@ -79,30 +99,13 @@ public class TemplateTest {
                  .filter(item -> StringUtils.isNotEmpty(item.getName()))
                  .collect(Collectors.groupingBy(Account::getName));
          System.out.println(map2);
-
     }
 
     @Test
     public void test3(){
-        System.out.println( Calendar.JANUARY);
-        BigDecimal weight = new BigDecimal("0");
-        System.out.println(weight.divide(new BigDecimal("10000")));
-        set(weight);
-        List<String> list = Lists.newArrayList();
-        setList(list);
-        list.forEach(x -> System.out.println(x));
         String yr0537 = "123;4,5，6";
-        String[] splitYr0537 = org.apache.commons.lang.StringUtils.split(yr0537, ",，;；、");
-        String yr05374 = "123;4,5，6";
-
-
-    }
-
-    private void setList(List<String> list) {
-        list.add("xxxx");
-    }
-
-    public void set(BigDecimal weight){
-        weight = weight.add(BigDecimal.ONE);
+        String[] splitYr0537 = StringUtils.split(yr0537, ",，;；、");
+        List<String> yr0537List = Arrays.stream(splitYr0537).collect(Collectors.toList());
+        yr0537List.forEach(System.out::println);
     }
 }
