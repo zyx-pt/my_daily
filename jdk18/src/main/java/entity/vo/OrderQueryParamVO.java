@@ -1,6 +1,9 @@
 package entity.vo;
 
+import entity.Sku;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class OrderQueryParamVO {
@@ -29,5 +32,11 @@ public class OrderQueryParamVO {
      */
     private Integer sourceType;
 
+    /**
+     * 订单明细列表ids
+     */
+    private List<Long> detailIds;
+
+    private List<Sku> skuList;
 
 }

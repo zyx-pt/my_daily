@@ -2,6 +2,8 @@ package entity;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class Order {
 
@@ -34,4 +36,11 @@ public class Order {
      * 订单来源：0->PC订单；1->app订单
      */
     private Integer sourceType;
+
+    /**
+     * 订单明细列表ids
+     */
+    private List<Long> detailIds;
+
+    private List<Sku> skuList;
 }

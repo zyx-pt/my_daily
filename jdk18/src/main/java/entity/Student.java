@@ -6,15 +6,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-/**
- * <pre>
- * 描述：TODO
- * </pre>
- *
- * @Author yxzheng
- * @Date 2020/10/15 17:09
- * @Description: TODO
- */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
