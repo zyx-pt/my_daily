@@ -9,28 +9,25 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
  * @Description: 数据分析使用CompletableFuture
+ * 1异步按分组执行
+ * 2.异步按维度查询不同表最后整合结果
+ * 3.异步查询后整合结果
  */
 public class AsyncDataAnalysisDemo {
     public static void main(String[] args) {
-//        asyncPerformByGroup();
+        asyncPerformByGroup();
 //        asyncQueryList();
-        asyncGroupQueryThenUnionSet();
+//        asyncGroupQueryThenUnionSet();
     }
 
-    /**
-     * @Description: 异步按分组执行
-     * @Author: zhengyongxian
-     * @Date: 2024/3/19 17:05
-     * @return java.util.List<entity.dto.PersonDTO>
-     */
-    public static List<String> asyncPerformByGroup(){
+    /** 异步按分组执行 */
+    public static List<String> asyncPerformByGroup() {
         // 模拟要查询的数据
         List<String> data = new ArrayList<>();
         for (int i = 1; i <= 100; i++) {
@@ -66,6 +63,8 @@ public class AsyncDataAnalysisDemo {
                         .flatMap(List::stream)
                         .collect(Collectors.toList())
         );
+        /** 使用工具类简化调用 */
+//        CompletableFuture<List<String>> mergedResult = FutureUtils.sequenceList(futures);
 
         // 阻塞等待合并结果
         List<String> result = mergedResult.join();
@@ -73,6 +72,7 @@ public class AsyncDataAnalysisDemo {
         // 输出合并后的结果
         System.out.println("==============Async Perform Merged Result:==============");
         result.forEach(System.out::println);
+
         return result;
     }
 
@@ -94,35 +94,29 @@ public class AsyncDataAnalysisDemo {
         return result;
     }
 
-    /**
-     * @Description: 异步按维度查询不同表最后要整合结果
-     * @Author: zhengyongxian
-     * @Date: 2024/3/19 17:46
-     * @return java.util.List<java.lang.String>
-     */
-    public static List<AnalysisDemoDTO> asyncGroupQueryThenUnionSet(){
-        AtomicReference<List<AnalysisDemoDTO>> dataAr = new AtomicReference<>();
+    /** 异步按维度查询不同表最后整合结果 */
+    public static List<AnalysisDemoDTO> asyncGroupQueryThenUnionSet() {
         CompletableFuture<List<AnalysisDemoDTO>> cf1 = CompletableFuture.supplyAsync(() -> queryRyzsGroupByAab001());
         CompletableFuture<List<AnalysisDemoDTO>> cf2 = CompletableFuture.supplyAsync(() -> queryCbzsGroupByAab001());
         CompletableFuture<List<AnalysisDemoDTO>> cf3 = CompletableFuture.supplyAsync(() -> queryDdzsGroupByAab001());
 
-        CompletableFuture<Void> mergedCf = CompletableFuture.allOf(cf1, cf2, cf3).thenApply(v ->{
+        CompletableFuture<List<AnalysisDemoDTO>> mergedCf = CompletableFuture.allOf(cf1, cf2, cf3).thenApply(v -> {
             // 查询结果
             List<AnalysisDemoDTO> ryzs00 = cf1.join();
             List<AnalysisDemoDTO> cbzs00 = cf2.join();
             List<AnalysisDemoDTO> ddzs00 = cf3.join();
-            dataAr.set(new ArrayList<>(Stream.of(ryzs00, cbzs00, ddzs00)
+            Collection<AnalysisDemoDTO> values = Stream.of(ryzs00, cbzs00, ddzs00)
                     .flatMap(List::stream)
                     .collect(Collectors.toMap(AnalysisDemoDTO::getAab001, Function.identity(), (result, data) -> {
                         Optional.ofNullable(data.getRyzs00()).ifPresent(result::setRyzs00);
                         Optional.ofNullable(data.getCbzs00()).ifPresent(result::setCbzs00);
                         Optional.ofNullable(data.getDdzs00()).ifPresent(result::setDdzs00);
                         return result;
-                    })).values()));
-            return v;
+                    })).values();
+            return new ArrayList<>(values);
         });
-        mergedCf.join();
-        List<AnalysisDemoDTO> result = dataAr.get();
+
+        List<AnalysisDemoDTO> result = mergedCf.join();
         result.forEach(System.out::println);
         return result;
     }
@@ -184,27 +178,22 @@ public class AsyncDataAnalysisDemo {
         return Lists.newArrayList(dto1, dto2, dto3);
     }
 
-    /**
-     * @Description: 异步查询后整合查询接口
-     * @Author: zhengyongxian
-     * @Date: 2024/3/19 16:14
-     * @return java.util.List<entity.dto.PersonDTO>
-     */
-    public static List<String> asyncQueryList(){
-        AtomicReference<List<String>> data = new AtomicReference<>();
+   /** 异步查询后整合结果 */
+    public static List<String> asyncQueryList() throws RuntimeException {
         CompletableFuture<List<String>> cf1 = CompletableFuture.supplyAsync(() -> queryByCondition("A"));
         CompletableFuture<List<String>> cf2 = CompletableFuture.supplyAsync(() -> queryByCondition("B"));
         CompletableFuture<List<String>> cf3 = CompletableFuture.supplyAsync(() -> queryByCondition("C"));
-        CompletableFuture<Void> mergedResult = CompletableFuture.allOf(cf1, cf2, cf3).thenApply(v -> {
+
+        CompletableFuture<List<String>> mergedResult = CompletableFuture.allOf(cf1, cf2, cf3).thenApply(v -> {
             List<String> list1 = cf1.join();
             List<String> list2 = cf2.join();
             List<String> list3 = cf3.join();
             List<String> collect = Stream.of(list1, list2, list3).flatMap(Collection::stream).collect(Collectors.toList());
-            data.set(collect);
-            return v;
+            return collect;
         });
-        mergedResult.join();
-        List<String> result = data.get();
+        /** 使用工具类简化调用 */
+//        CompletableFuture<List<String>> mergedResult = FutureUtils.sequenceList(Lists.newArrayList(cf1, cf2, cf3));
+        List<String> result = mergedResult.join();
         System.out.println("==============Async Query Merged Result:==============");
         result.forEach(System.out::println);
         return result;
@@ -223,6 +212,4 @@ public class AsyncDataAnalysisDemo {
         }
         return data;
     }
-
-
 }
